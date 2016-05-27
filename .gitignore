@@ -1,9 +1,7 @@
 /vendor/*
-/app/vendor/*
-/app/tmp/cache/models/myapp*
-/app/tmp/cache/persistent/myapp*
-/app/tmp/cache/persistent/views/*
-/app/tmp/sessions/*
-/app/logs/*.log
-/.gitattributes
-/composer.phar
+
+/tmp/cache/models/myapp*
+/tmp/cache/persistent/myapp*
+/tmp/cache/persistent/views/*
+/tmp/sessions
+/logs/*.log
