@@ -7,4 +7,5 @@
 /logs/*.log
 
 /server/vagrant/.vagrant/*
+/server/ansible/vagrant.retry
 /tmp/debug_kit.sqlite
