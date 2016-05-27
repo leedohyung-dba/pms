@@ -3,5 +3,8 @@
 /tmp/cache/models/myapp*
 /tmp/cache/persistent/myapp*
 /tmp/cache/persistent/views/*
-/tmp/sessions
+/tmp/sessions/*
 /logs/*.log
+
+/server/vagrant/.vagrant/*
+/tmp/debug_kit.sqlite

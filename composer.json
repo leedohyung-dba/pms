@@ -44,7 +44,7 @@
     },
     "autoload": {
         "classmap": [
-            "app/src/Model/Define"
+            "src/Model/Define"
         ],
         "psr-4": {
             "App\\": [
