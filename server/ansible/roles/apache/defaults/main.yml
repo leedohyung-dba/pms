@@ -1,0 +1,8 @@
+---
+# ドキュメントルート
+docroot: /var/www/html
+main_docroot: /var/www/pms/current/app
+# ドキュメントルートの所有ユーザ名
+main_username: fusic
+# 環境変数CAKE_ENV_MODEの設定値
+cake_env_mode: development

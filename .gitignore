@@ -1,0 +1,6 @@
+/vendor/*
+/app/vendor/*
+/app/tmp/*
+/app/logs/*
+/.gitattributes
+/composer.phar

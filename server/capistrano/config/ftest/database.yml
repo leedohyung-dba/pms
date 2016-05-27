@@ -1,0 +1,7 @@
+adapter: postgresql
+encoding: utf8
+host: 127.0.0.1
+database: qherp_test
+username: postgres
+password: postgres
+port: 5432

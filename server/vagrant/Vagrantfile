@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "centos7.2"
+  config.vm.network :forwarded_port, host: 8880, guest: 80
+  config.vm.network :forwarded_port, host: 4443, guest: 443
+  #config.vm.network "public_network", ip: "10.0.32.120", netmask: "255.0.0.0"
+  #config.vm.network "private_network", ip: "192.168.33.10", auto_config:false
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../ansible/vagrant.yml"
+    ansible.verbose = "v"
+  end
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "pms.vagrant"
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "80"]
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+    vb.customize ["modifyvm", :id, "--cpus", "1"]
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
+    vb.customize ["modifyvm", :id, "--vram", "12"]
+  end
+end

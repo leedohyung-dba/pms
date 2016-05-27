@@ -1,0 +1,24 @@
+---
+- name: pms
+  become: true
+  hosts: all
+  user: vagrant
+  vars:
+    main_username: fusic
+    main_password: fusic
+    hostname: pms.vagrant
+    username: fusic
+    public_key: pms.pub
+    docroot: /var/www/html
+    main_docroot: /var/www/pms/current/app
+    dbname: pms
+    dbroot: /var/opt/rh/rh-postgresql94/lib/pgsql
+    permit_network: 10.0.0.0/8
+    ssh_port: 22
+  roles:
+    - common
+    - apache
+    - php
+    - postgresql
+    - elasticsearch
+    - kibana
