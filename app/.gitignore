@@ -1,3 +1,7 @@
 /vendor/*
-/tmp/*
-/logs/*
+
+/tmp/cache/models/myapp*
+/tmp/cache/persistent/myapp*
+/tmp/cache/persistent/views/*
+/tmp/sessions
+/logs/*.log
