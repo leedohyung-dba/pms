@@ -14,6 +14,8 @@ use UsersDefine;
  */
 class UsersController extends AppController
 {
+    public $paginate = ['limit' => '5', 'order' => ['Users.id' => 'asc']];
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -86,9 +88,10 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $pageTitle = 'ユーザー一覧';
         $this->viewBuilder()->layout('default');
         $users = $this->paginate($this->Users);
-        $this->set(compact('users'));
+        $this->set(compact('users', 'pageTitle'));
         $this->set('_serialize', ['users']);
     }
 

@@ -46,7 +46,7 @@
 
 <div class="form-group form-group-sm div-admin-flag">
   <?= $this->Form->label(__('admin_f'), null, ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']); ?>
-  <?= $this->Form->input('role', ['type' => 'checkbox', 
+  <?= $this->Form->input('admin_flag', ['type' => 'checkbox', 
                                       'value' => $adminFlag,
                                       'class' => 'js-switch', 
                                       'label' => ' ' ]); ?>
