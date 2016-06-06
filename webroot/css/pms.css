@@ -1,0 +1,51 @@
+.w50px {
+	width: 50px !important;
+}
+.w60px {
+	width: 60px !important;
+}
+.w70px {
+	width: 70px !important;
+}
+.w80px {
+	width: 80px !important;
+}
+.w100px {
+	width: 100px !important;
+}
+.w150px {
+	width: 150px !important;
+}
+.w200px {
+	width: 200px !important;
+}
+.w250px {
+	width: 250px !important;
+}
+.w300px {
+	width: 300px !important;
+}
+
+.btn-cancel {
+	float: right !important;
+}
+
+div .submit {
+	float: left !important;
+}
+
+td {
+	vertical-align: middle !important;
+}
+
+th {
+	/*background-color: #F8F8F8;*/
+	text-align: right !important;
+	vertical-align: middle !important;
+}
+
+thead > tr > th {
+	/*background-color: #F0F0F0 !important;*/
+	text-align: center !important;
+}
+

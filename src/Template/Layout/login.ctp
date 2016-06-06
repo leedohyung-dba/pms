@@ -29,7 +29,7 @@
     <!-- Switchery -->
     <?= $this->Html->script('../vendors/switchery/dist/switchery.min') ?>
     <!-- Custom Theme Scripts -->
-    <?= $this->Html->script('../js/custom') ?>
+    <?= $this->Html->script('custom') ?>
 
   </head>
 
