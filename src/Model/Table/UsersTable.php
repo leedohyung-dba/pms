@@ -139,4 +139,19 @@ class UsersTable extends AppTable
         $rules->add($rules->isUnique(['username']));
         return $rules;
     }
+
+    /**
+     * set Update Password Flag.
+     *
+     * @return $data
+     */
+    public function setUpdatePasswordFlag($data)
+    {
+        if ( empty($data['User']['update_password_flag']) ) {
+            // update_password_flagが未チェックであればバリデーションを実行しないようにカラムを削除する
+            unset($data['User']['password']);
+            unset($data['User']['password_confirm']);
+        }
+        return $data;
+    }
 }

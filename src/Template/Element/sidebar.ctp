@@ -7,7 +7,7 @@
 <!-- menu profile quick info -->
 <div class="profile">
   <div class="profile_pic">
-    <img src="img/img.jpg" alt="..." class="img-circle profile_img">
+  <?= $this->Html->image('img.jpg', ['class' => 'img-circle profile_img']) ?>
   </div>
   <div class="profile_info">
     <span>Welcome,</span>

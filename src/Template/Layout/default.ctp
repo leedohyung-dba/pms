@@ -32,10 +32,21 @@
     <!-- Custom Theme Style -->
     <?= $this->Html->css('custom') ?>
 
+    <!-- pms default css -->
+    <?= $this->Html->css('pms') ?>
+
     <!-- jQuery -->
     <?= $this->Html->script('../vendors/jquery/dist/jquery.min') ?>
     <!-- Bootstrap -->
     <?= $this->Html->script('../vendors/bootstrap/dist/js/bootstrap.min') ?>
+
+
+    <!-- Switchery -->
+    <?= $this->Html->css('../vendors/switchery/dist/switchery.min') ?>
+    <!-- Switchery -->
+    <?= $this->Html->script('../vendors/switchery/dist/switchery.min') ?>
+    <!-- html5 form validation -->
+    <?= $this->Html->script('change_html5_valid_message') ?>
 
 </head>
 <body class="nav-md">
@@ -52,8 +63,9 @@
       <!-- page content -->
       <div class="right_col" role="main" style="height: 900px !important;">
         <div class="clearfix"></div>
+        <?= $this->Flash->render() ?>
         <div class="row">
-      <?= $this->fetch('content') ?>
+          <?= $this->fetch('content') ?>
         </div>
       </div>
 

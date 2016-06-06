@@ -6,6 +6,7 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 use UsersDefine;
+use Cake\Routing\Router;
 
 /**
  * Users Controller
@@ -14,7 +15,13 @@ use UsersDefine;
  */
 class UsersController extends AppController
 {
-    public $paginate = ['limit' => '5', 'order' => ['Users.id' => 'asc']];
+    public $paginate = ['limit' => '5', 'order' => ['Users.created' => 'desc']];
+
+    public $Session = "";
+
+    public function initialize() {
+        parent::initialize();
+    }
 
     public function beforeFilter(Event $event)
     {
@@ -23,6 +30,7 @@ class UsersController extends AppController
             'login',
             'setup',
         ]);
+        $this->Session = $this->request->session();
     }
 
     public function setup()
@@ -93,6 +101,7 @@ class UsersController extends AppController
         $users = $this->paginate($this->Users);
         $this->set(compact('users', 'pageTitle'));
         $this->set('_serialize', ['users']);
+        $this->Session->write('url', Router::reverse($this->request, true));
     }
 
     /**
@@ -104,11 +113,12 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        $pageTitle = 'ユーザー詳細';
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
-
-        $this->set('user', $user);
+        $beforeUrl = $this->Session->read('url');
+        $this->set(compact('user', 'pageTitle', 'beforeUrl'));
         $this->set('_serialize', ['user']);
     }
 
@@ -119,6 +129,8 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $pageTitle = 'ユーザー登録';
+        $adminFlag = UsersDefine::ADMIN_FLAG;
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
@@ -129,7 +141,8 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('user'));
+        $beforeUrl = $this->Session->read('url');
+        $this->set(compact('user', 'pageTitle', 'adminFlag', 'beforeUrl'));
         $this->set('_serialize', ['user']);
     }
 
@@ -142,11 +155,16 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $pageTitle = 'ユーザー編集';
+        $adminFlag = UsersDefine::ADMIN_FLAG;
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
+
+            $passwordUpdateFilteredData = $this->Users->setUpdatePasswordFlag($this->request->data);
+
+            $user = $this->Users->patchEntity($user, $passwordUpdateFilteredData);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -154,7 +172,8 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('user'));
+        $beforeUrl = $this->Session->read('url');
+        $this->set(compact('user', 'pageTitle', 'adminFlag', 'beforeUrl'));
         $this->set('_serialize', ['user']);
     }
 
@@ -174,6 +193,11 @@ class UsersController extends AppController
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        $beforeUrl = $this->Session->read('url');
+        if(!empty($beforeUrl)) {
+            return $this->redirect($beforeUrl);
+        } else {
+            return $this->redirect(['action' => 'index']);
+        }
     }
 }

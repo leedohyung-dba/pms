@@ -1,58 +1,44 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="users view large-9 medium-8 columns content">
-    <h3><?= h($user->name) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th><?= __('Username') ?></th>
-            <td><?= h($user->username) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Name') ?></th>
-            <td><?= h($user->name) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Name Kana') ?></th>
-            <td><?= h($user->name_kana) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Email') ?></th>
-            <td><?= h($user->email) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Role') ?></th>
-            <td><?= $this->Number->format($user->role) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Created') ?></th>
-            <td><?= h($user->created) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Modified') ?></th>
-            <td><?= h($user->modified) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Deleted') ?></th>
-            <td><?= h($user->deleted) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Logical Delete') ?></th>
-            <td><?= $user->logical_delete ? __('Yes') : __('No'); ?></td>
-        </tr>
-    </table>
+<div class="x_panel">
+<div class="col-md-5 col-md-offset-1">
+    <div class="x_title">
+      <h4><?= $pageTitle ?></h4>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">        
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="w100px"><?= __('input title') ?></th>
+                <th><?= __('input content') ?></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th><?= __('username') ?></th>
+                <td><?= $user->username ?></td>
+              </tr>
+              <tr>
+                <th><?= __('name') ?></th>
+                <td><?= $user->name ?></td>
+              </tr>
+              <tr>
+                <th><?= __('name_kana') ?></th>
+                <td><?= $user->name_kana ?></td>
+              </tr>
+              <tr>
+                <th><?= __('admin_f') ?></th>
+                <td><?= $user->admin_flag ?></td>
+              </tr>
+            </tbody>
+        </table>
+
+        <?php if(!empty($beforeUrl)): ?>
+            <?= $this->Html->link(__('List'), $beforeUrl, ['class' => 'btn btn-default'], '', ['escape'=>false, 'div' => true]);?>
+        <?php else: ?>
+            <?= $this->Html->link(__('List'), ['action' => 'index'], ['class' => 'btn btn-default'], '', ['escape'=>false, 'div' => true]);?>
+        <?php endif; ?>
+        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id], ['class' => 'btn btn-primary'], '', ['escape'=>false, 'div' => true]);?>
+        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['class' => 'btn btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+    </div>
+</div>
 </div>

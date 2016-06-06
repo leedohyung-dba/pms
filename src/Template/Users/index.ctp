@@ -12,13 +12,31 @@
       <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th><?= $this->Paginator->sort('username', __('username'))?></th>
-            <th><?= $this->Paginator->sort('name', __('name')) ?></th>
-            <th><?= $this->Paginator->sort('name_kana', __('name_kana')) ?></th>
-            <th><?= $this->Paginator->sort('email', __('email')) ?></th>
-            <th><?= $this->Paginator->sort('admin_flag', __('role')) ?></th>
-            <th><?= $this->Paginator->sort('created', __('created')) ?></th>
-            <th><?= __('action') ?></th>
+            <th class="w200px th-sort-link" id="th-sort-link-username">
+                <?= $this->Paginator->sort('username', __('username'))?>
+                <i class="fa fa-sort"></i>
+            </th>
+            <th class="w100px th-sort-link" id="th-sort-link-name">
+                <?= $this->Paginator->sort('name', __('name')) ?>
+                <i class="fa fa-sort"></i>
+            </th>
+            <th class="w100px th-sort-link" id="th-sort-link-name_kana">
+                <?= $this->Paginator->sort('name_kana', __('name_kana')) ?>
+                <i class="fa fa-sort"></i>
+            </th>
+            <th class="w100px th-sort-link" id="th-sort-link-email">
+                <?= $this->Paginator->sort('email', __('email')) ?>
+                <i class="fa fa-sort"></i>
+            </th>
+            <th class="w60px th-sort-link" id="th-sort-link-admin_flag">
+                <?= $this->Paginator->sort('admin_flag', __('role')) ?>
+                <i class="fa fa-sort"></i>
+            </th>
+            <th class="w150px th-sort-link" id="th-sort-link-username">
+                <?= $this->Paginator->sort('created', __('created')) ?>
+                <i class="fa fa-sort"></i>
+            </th>
+            <th class="w150px"><?= __('action') ?></th>
           </tr>
         </thead>
         <tbody>
@@ -31,9 +49,11 @@
                 <td><?= $this->Number->format($user->admin_flag) ?></td>
                 <td><?= $user->created->timezone('Asia/Tokyo')->format('Y/m/d H:i:s') ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                    <div class="btn-group" role="group" aria-label="...">
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id], ['class' => 'btn btn-default btn-xs']) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id], ['class' => 'btn btn-primary btn-xs']) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['class' => 'btn btn-danger btn-xs', 'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                    </div>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -55,3 +75,13 @@
   </div>
 </div>
 <!-- /page content -->
+
+<?php $this->start('script'); ?>
+<script type="text/javascript">
+    var PHPVALUE = {
+        sort: <?= "'".str_replace("Users.", "", $this->Paginator->params()['sort'])."'"; ?>,
+        direction: <?= "'".$this->Paginator->params()['direction']."'"; ?>
+    };
+</script>
+<?php $this->end(); ?>
+<?= $this->Html->script('user_list'); ?>

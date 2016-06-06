@@ -9,7 +9,7 @@ class FormHelper extends BootstrapUIFormHelper
         'error' => '<div class="help-block">{{content}}</div>',
         'help' => '<div class="help-block">{{content}}</div>',
         'inputContainer' => '<div class="form-group {{type}}{{required}}">{{content}}{{help}}</div>',
-        'inputContainerError' => '<div class="form-group {{type}}{{required}} has-error col-sm-8">{{content}}{{error}}{{help}}</div>',
+        'inputContainerError' => '<div class="form-group {{type}}{{required}} has-error col-sm-12">{{content}}{{error}}{{help}}</div>',
         'checkboxWrapper' => '<div class="checkbox"><label>{{input}}{{label}}</label></div>',
         'multipleCheckboxWrapper' => '<div class="checkbox">{{label}}</div>',
         'radioInlineFormGroup' => '{{label}}<div class="radio-inline-wrapper">{{input}}</div>',
