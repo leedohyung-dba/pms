@@ -163,7 +163,6 @@ class UsersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
 
             $passwordUpdateFilteredData = $this->Users->setUpdatePasswordFlag($this->request->data);
-
             $user = $this->Users->patchEntity($user, $passwordUpdateFilteredData);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));

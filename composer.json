@@ -38,7 +38,7 @@
         "digitalnature/php-ref": "dev-master",
         "symfony/var-dumper": "*",
         "phpunit/phpcov": "~3.0",
-        "phpunit/phpunit": "~5.0",
+        "phpunit/phpunit": "~5.4",
         "cakephp/cakephp-codesniffer": "dev-master",
         "k1low/po": "3.*"
     },

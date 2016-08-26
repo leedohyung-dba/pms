@@ -4,7 +4,6 @@
       'inputContainer' => '<div class="col-sm-12">{{content}}</div>',
     ]);
   ?>
-
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -14,9 +13,9 @@
     </thead>
     <tbody>
       <tr>
-        <th><?= __('username') ?></th>
+        <th><input type="email" class="test" required><?= __('username') ?></th>
         <td><?= $this->Form->input('username', ['type' => 'text', 
-                'class' => 'form-control-xs col-md-4 col-xs-12', 
+                'class' => 'form-control-xs col-md-4 col-xs-12 fvc-fv-required-false', 
                 'label' => false ]); ?></td>
       </tr>
       <?php if($this->request->action != 'edit'): ?>
@@ -105,8 +104,10 @@
       <?php else: ?>
         <?= $this->Html->link(__('Cancel'), ['action' => 'index'], ['class' => 'btn btn-default'], '', ['escape'=>false, 'div' => true]);?>
       <?php endif; ?>
-  <?php endif; ?>
   </div>
+  <?php endif; ?>
 </div>
 <?= $this->Form->end(); ?>
 <div class="clearfix"></div>
+
+<script src="<?= $baseUrl;?>js/rvc/dist/index.bundle.js"></script>

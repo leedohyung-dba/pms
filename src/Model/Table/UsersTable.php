@@ -73,14 +73,15 @@ class UsersTable extends AppTable
 
         // パスワード
         $validator
-        ->notEmpty('password', __('required'))
+        ->notEmpty('password', __('required'), 'create')
         ->add('password', 'valid', [
             'rule' => 'isAlphaNumeric',
             'message' => __('alpha numeric must be valid'),
             'provider' => 'user'
         ])
+        ->allowEmpty('password', 'update')
         // 確認用パスワード
-        ->notEmpty('password_confirm', __('required'))
+        ->notEmpty('password_confirm', __('required'), 'create')
         ->add('password_confirm', 'valid', [
             'rule' => 'isAlphaNumeric',
             'message' => __('alpha numeric must be valid'),
@@ -90,7 +91,8 @@ class UsersTable extends AppTable
             'rule' => 'isPasswordConfirm',
             'message' => __('password is incorrect for confirmation'),
             'provider' => 'user'
-        ]);
+        ])
+        ->allowEmpty('password_confirm', 'update');
 
         return $validator;
     }
@@ -147,10 +149,11 @@ class UsersTable extends AppTable
      */
     public function setUpdatePasswordFlag($data)
     {
-        if ( empty($data['User']['update_password_flag']) ) {
+        if ( empty($data['update_password_flag']) ||
+             $data['update_password_flag'] == "0" ) {
             // update_password_flagが未チェックであればバリデーションを実行しないようにカラムを削除する
-            unset($data['User']['password']);
-            unset($data['User']['password_confirm']);
+            unset($data['password']);
+            unset($data['password_confirm']);
         }
         return $data;
     }
