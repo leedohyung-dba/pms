@@ -9,3 +9,4 @@
 /server/vagrant/.vagrant/*
 /server/ansible/vagrant.retry
 /tmp/debug_kit.sqlite
+webroot/js/rvc/node_modules/*
